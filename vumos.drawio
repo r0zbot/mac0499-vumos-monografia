@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" modified="2021-12-06T11:41:15.701Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.45 Safari/537.36 OPR/82.0.4227.13 (Edition beta)" etag="Yf2KTFaYuDRrlO2T4Fug" version="15.8.7" type="github" pages="3">
+<mxfile host="app.diagrams.net" modified="2021-12-06T12:30:37.307Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.45 Safari/537.36 OPR/82.0.4227.13 (Edition beta)" etag="4Am7ZAhPkKZskVbY9qW8" version="15.8.7" type="github" pages="3">
   <diagram id="CGmAZGWSG4rExbUco565" name="Page-1">
     <mxGraphModel dx="1394" dy="1944" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
@@ -672,6 +672,101 @@
       <root>
         <mxCell id="nv6QR-FtnJqXwkWJjCVr-0" />
         <mxCell id="nv6QR-FtnJqXwkWJjCVr-1" parent="nv6QR-FtnJqXwkWJjCVr-0" />
+        <mxCell id="nv6QR-FtnJqXwkWJjCVr-2" value="vumos-db-api" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;fontStyle=1;fontSize=14;" vertex="1" parent="nv6QR-FtnJqXwkWJjCVr-1">
+          <mxGeometry x="130" y="30" width="110" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="nv6QR-FtnJqXwkWJjCVr-3" value="" style="endArrow=none;dashed=1;html=1;strokeWidth=2;rounded=0;" edge="1" parent="nv6QR-FtnJqXwkWJjCVr-1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="188" y="550" as="sourcePoint" />
+            <mxPoint x="188" y="80" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="nv6QR-FtnJqXwkWJjCVr-7" value="Controlador de módulos" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;fontSize=11;" vertex="1" parent="nv6QR-FtnJqXwkWJjCVr-1">
+          <mxGeometry x="120" y="50" width="130" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="nv6QR-FtnJqXwkWJjCVr-8" value="módulo" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;fontStyle=1;fontSize=14;" vertex="1" parent="nv6QR-FtnJqXwkWJjCVr-1">
+          <mxGeometry x="436" y="30" width="70" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="nv6QR-FtnJqXwkWJjCVr-9" value="" style="endArrow=none;dashed=1;html=1;strokeWidth=2;rounded=0;" edge="1" parent="nv6QR-FtnJqXwkWJjCVr-1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="474" y="540" as="sourcePoint" />
+            <mxPoint x="474" y="80" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="nv6QR-FtnJqXwkWJjCVr-10" value="exemplo de módulo" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;fontSize=11;" vertex="1" parent="nv6QR-FtnJqXwkWJjCVr-1">
+          <mxGeometry x="416" y="50" width="110" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="nv6QR-FtnJqXwkWJjCVr-12" value="" style="endArrow=classic;html=1;rounded=0;fontSize=11;strokeWidth=2;dashed=1;dashPattern=1 1;" edge="1" parent="nv6QR-FtnJqXwkWJjCVr-1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="463" y="100" as="sourcePoint" />
+            <mxPoint x="193" y="140" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="nv6QR-FtnJqXwkWJjCVr-13" value="hello" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;fontSize=12;fontStyle=1" vertex="1" parent="nv6QR-FtnJqXwkWJjCVr-1">
+          <mxGeometry x="311" y="95" width="40" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="nv6QR-FtnJqXwkWJjCVr-14" value="Contém o ID, nome e descrição do módulo,&lt;br style=&quot;font-size: 10px&quot;&gt;e também seus parâmetros configuráveis,&lt;br style=&quot;font-size: 10px&quot;&gt;com valores padrão e atual." style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;fontSize=10;" vertex="1" parent="nv6QR-FtnJqXwkWJjCVr-1">
+          <mxGeometry x="226" y="136" width="210" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="nv6QR-FtnJqXwkWJjCVr-17" value="configuration_change" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;fontSize=12;fontStyle=1" vertex="1" parent="nv6QR-FtnJqXwkWJjCVr-1">
+          <mxGeometry x="261" y="218" width="140" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="FKQaq9PJqc_fT0N1DjiZ-0" value="Tipo de mensagem" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;" vertex="1" parent="nv6QR-FtnJqXwkWJjCVr-1">
+          <mxGeometry x="540" y="140" width="180" height="90" as="geometry">
+            <mxRectangle x="640" y="-1010" width="50" height="30" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="FKQaq9PJqc_fT0N1DjiZ-1" value="Direta" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;" vertex="1" parent="FKQaq9PJqc_fT0N1DjiZ-0">
+          <mxGeometry y="30" width="180" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="FKQaq9PJqc_fT0N1DjiZ-2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;startArrow=none;startFill=0;shadow=0;endArrow=none;endFill=0;" edge="1" parent="FKQaq9PJqc_fT0N1DjiZ-0">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="117" y="46" as="sourcePoint" />
+            <mxPoint x="167" y="46" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="FKQaq9PJqc_fT0N1DjiZ-3" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;startArrow=none;startFill=0;shadow=0;dashed=1;strokeWidth=2;endArrow=none;endFill=0;dashPattern=1 1;" edge="1" parent="FKQaq9PJqc_fT0N1DjiZ-0">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="117" y="76" as="sourcePoint" />
+            <mxPoint x="167" y="76" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="FKQaq9PJqc_fT0N1DjiZ-5" value="Broadcast" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;" vertex="1" parent="FKQaq9PJqc_fT0N1DjiZ-0">
+          <mxGeometry y="60" width="180" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="FKQaq9PJqc_fT0N1DjiZ-6" value="" style="endArrow=classic;html=1;rounded=0;fontSize=11;strokeWidth=2;" edge="1" parent="nv6QR-FtnJqXwkWJjCVr-1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="194" y="232" as="sourcePoint" />
+            <mxPoint x="464" y="260" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="FKQaq9PJqc_fT0N1DjiZ-7" value="Pedido de mudança de configuração,&lt;br&gt;com os novos valores definidos.&lt;br&gt;Na implementação atual dos módulos em Python, também&lt;br&gt;faz com que eles reiniciem para aplicá-la." style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;fontSize=10;" vertex="1" parent="nv6QR-FtnJqXwkWJjCVr-1">
+          <mxGeometry x="191" y="259" width="280" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="FKQaq9PJqc_fT0N1DjiZ-8" value="configuration_changed" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;fontSize=12;fontStyle=1" vertex="1" parent="nv6QR-FtnJqXwkWJjCVr-1">
+          <mxGeometry x="256" y="338" width="150" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="FKQaq9PJqc_fT0N1DjiZ-10" value="Confirmação de mudança de configuração" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;fontSize=10;" vertex="1" parent="nv6QR-FtnJqXwkWJjCVr-1">
+          <mxGeometry x="235" y="383" width="200" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="FKQaq9PJqc_fT0N1DjiZ-11" value="" style="endArrow=classic;html=1;rounded=0;fontSize=11;strokeWidth=2;dashed=1;dashPattern=1 1;" edge="1" parent="nv6QR-FtnJqXwkWJjCVr-1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="466" y="350" as="sourcePoint" />
+            <mxPoint x="196" y="390" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="FKQaq9PJqc_fT0N1DjiZ-12" value="status_update" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;fontSize=12;fontStyle=1" vertex="1" parent="nv6QR-FtnJqXwkWJjCVr-1">
+          <mxGeometry x="281" y="430" width="100" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="FKQaq9PJqc_fT0N1DjiZ-13" value="Atualização de estado do módulo. Contém um código&lt;br&gt;(que pode ser &quot;rodando&quot;, &quot;parado&quot;, &quot;esperando&quot;) e uma&lt;br&gt;descrição sobre o que ele está fazendo no momento." style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;fontSize=10;" vertex="1" parent="nv6QR-FtnJqXwkWJjCVr-1">
+          <mxGeometry x="205" y="490" width="260" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="FKQaq9PJqc_fT0N1DjiZ-14" value="" style="endArrow=classic;html=1;rounded=0;fontSize=11;strokeWidth=2;dashed=1;dashPattern=1 1;" edge="1" parent="nv6QR-FtnJqXwkWJjCVr-1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="466" y="442" as="sourcePoint" />
+            <mxPoint x="196" y="482" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
       </root>
     </mxGraphModel>
   </diagram>
