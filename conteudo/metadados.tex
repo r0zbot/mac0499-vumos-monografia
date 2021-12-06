@@ -1,0 +1,95 @@
+%!TeX root=../tese.tex
+%("dica" para o editor de texto: este arquivo é parte de um documento maior)
+% para saber mais: https://tex.stackexchange.com/q/78101/183146
+
+% Insira aqui os metadados do seu trabalho. Para isso, copie,
+% com as alterações necessárias, o conteúdo do arquivo
+% conteudo-exemplo/metadados.tex
+
+%!TeX root=../tese.tex
+%("dica" para o editor de texto: este arquivo é parte de um documento maior)
+% para saber mais: https://tex.stackexchange.com/q/78101/183146
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%% METADADOS DA TESE %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Estes comandos definem o título e autoria do trabalho e devem sempre ser
+% definidos, pois além de serem utilizados para criar a capa, também são
+% armazenados nos metadados do PDF.
+\title{
+    % Obrigatório nas duas línguas
+    titlept={VuMoS},
+    titleen={VuMoS},
+    % Opcional, mas se houver deve existir nas duas línguas
+    subtitlept={Um sistema de monitoramento de vulnerabilidades de segurança para os sistemas independentes da USP},
+    subtitleen={Security vulnerability monitoring system for the independent systems at USP},
+    % Opcional, para o cabeçalho das páginas
+    shorttitle={VuMoS: Monitoramento de vulnerabilidades na USP},
+}
+
+\author{Daniel de Sousa Martinez}
+
+% Para TCCs, este comando define o supervisor
+\orientador{Prof. João Eduardo Ferreira}
+
+% Se não houver, remova; se houver mais de um, basta
+% repetir o comando quantas vezes forem necessárias
+
+% A página de rosto da versão para depósito (ou seja, a versão final
+% antes da defesa) deve ser diferente da página de rosto da versão
+% definitiva (ou seja, a versão final após a incorporação das sugestões
+% da banca).
+\defesa{
+  nivel=tcc, % mestrado, doutorado ou tcc
+  % É a versão para defesa ou a versão definitiva?
+  %definitiva,
+  % É qualificação?
+  quali,
+  programa={Ciência da Computação},
+  membrobanca={Profª. Drª. Fulana de Tal (orientadora) -- IME-USP [sem ponto final]},
+  % Em inglês, não há o "ª"
+  %membrobanca{Prof. Dr. Fulana de Tal (advisor) -- IME-USP [sem ponto final]},
+  membrobanca={Prof. Dr. Ciclano de Tal -- IME-USP [sem ponto final]},
+  membrobanca={Profª. Drª. Convidada de Tal -- IMPA [sem ponto final]},
+  % Se não houver, remova
+  apoio={Durante o desenvolvimento deste trabalho o autor
+         recebeu auxílio financeiro da Superintendência de Tecnologia da Informação da USP},
+  local={São Paulo},
+  data=2021-08-10, % YYYY-MM-DD
+  % A licença do seu trabalho. Use CC-BY, CC-BY-NC, CC-BY-ND, CC-BY-SA,
+  % CC-BY-NC-SA ou CC-BY-NC-ND para escolher a licença Creative Commons
+  % correspondente (o sistema insere automaticamente o texto da licença).
+  % Se quiser estabelecer regras diferentes para o uso de seu trabalho,
+  % converse com seu orientador e coloque o texto da licença aqui, mas
+  % observe que apenas TCCs sob alguma licença Creative Commons serão
+  % acrescentados ao BDTA.
+  direitos={CC-BY}, % Creative Commons Attribution 4.0 International License
+  %direitos={Autorizo a reprodução e divulgação total ou parcial
+  %          deste trabalho, por qualquer meio convencional ou
+  %          eletrônico, para fins de estudo e pesquisa, desde que
+  %          citada a fonte.},
+  % Isto deve ser preparado em conjunto com o bibliotecário
+  %fichacatalografica={nome do autor, título, etc.},
+}
+
+% As palavras-chave são obrigatórias, em português e
+% em inglês. Acrescente quantas forem necessárias.
+\palavrachave{segurança}
+\palavrachave{microsserviços}
+\palavrachave{monitoramento}
+\palavrachave{vulnerabilidades}
+
+\keyword{security}
+\keyword{microservices}
+\keyword{monitoring}
+\keyword{vulnerabilities}
+
+% TODO: escrever resumo e abstract
+% O resumo é obrigatório, em português e inglês.
+\resumo{...
+}
+% TODO: escrever resumo e abstract
+\abstract{
+...
+}
