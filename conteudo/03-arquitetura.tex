@@ -6,7 +6,7 @@
     O VuMoS foi implementado utilizando uma arquitetura modular de microsserviços, para que ele possa ser facilmente estendido e modificado no futuro caso necessário, e também para proporcionar uma maior facilidade de desenvolvimento de cada um dos módulos.
     
     \begin{figure}
-        \includegraphics[scale=0.8]{conteudo/rdbdb-Microservices.pdf}
+        \includegraphics[scale=0.8]{figuras/vumos-Microservices.pdf}
         \caption{Diagrama de comunicação dos microsserviços.\label{fig:microservices}}
     \end{figure}
     
@@ -19,9 +19,15 @@
     
     
     \subsection{PostgreSQL}
-    \subsection{vumos-db-api}
-    \subsection{vumos-interface}
     \subsection{Módulos}
+        
+        O sistema foi projetado de 
+        
+        \begin{figure}
+            \includegraphics[scale=0.8]{figuras/vumos-module-communication.drawio.pdf}
+            \caption{Diagrama de troca de mensagens entre um módulo e o gerenciador vumos-db-api.\label{fig:microservices}}
+        \end{figure}
+        
         % TODO: falar do startup (msg HELLO)
         % TODO: falar do VUMOS_ID
         % TODO: falar do vumos.py (a biblioteca em python)
@@ -32,6 +38,10 @@
         \subsubsection{Crawler}
         \subsubsection{SQLMap Runner}
             % TODO: falar do threadpool
+    
+    \subsection{vumos-db-api}
+    \subsection{vumos-interface}
+    
 
 \section{Orquestração}
     
