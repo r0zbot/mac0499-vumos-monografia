@@ -16,12 +16,15 @@ A principal atividade do grupo consiste em acessar diversos sistemas hospedados 
 % TODO: dicionario de palavras?
 dos institutos e descobrir que tipos de serviços estão sendo expostos indevidamente, como impressoras ou servidores de arquivos que permitem acesso sem autenticação. 
 
-\subsection{O projeto}
+% TODO: colocar uma justificativa 
 
-Por conta do tamanho da rede da USP, 
-% TODO: AS28571, https://ipinfo.io/AS28571, quote? 
-que conta atualmente com mais de 180 mil possíveis endereços de IP,  e por ela ser composta por diversas subredes independentes (para cada instituto, por exemplo), não há um controle central, e uma abordagem manual para vasculhá-la é inviável, então inicialmente o grupo operava por meio de amostragem dos endereços de IP encontrados por ferramentas como NMAP. 
-% TODO: NMAP? 
+% 
+\subsection{O desafio}
+
+Por conta do tamanho da rede da USP \footnote{Mais detalhes em \url{https://ipinfo.io/AS28571}}, 
+% TODO: AS28571, , quote? 
+que conta atualmente com mais de 180 mil possíveis endereços de IP,  e por ela ser composta por diversas subredes independentes (para cada instituto, por exemplo), sem um controle central, uma abordagem manual para vasculhá-la é inviável. Portanto, inicialmente, o grupo operava por meio de amostragem dos endereços de IP encontrados por ferramentas como NMAP. 
+% TODO: NMAP?  
 
 
 Embora existam ferramentas automatizadas para busca de vulnerabilidades, nenhuma delas é compreensiva e escalável o suficiente para uma rede desse tamanho. O serviço que mais se aproxima é o oferecido pelo 
@@ -38,4 +41,4 @@ Por conta disso, em Janeiro de 2021 iniciou-se o desenvolvimento do VuMoS, cujo 
 
 \section{Objetivo}
 
-O objetivo desse projeto é concentrar em uma única plataforma as informações obtidas através de inúmeras ferramentas e serviços, e através disso construir um inventário dos sistemas rodando na USP e suas possíveis vulnerabilidades. Adicionalmente, essa plataforma deve ser escalável para centenas de milhares de entradas, possuir uma arquitetura modular e possibilitar a adição e substituição de módulos sem interromper o funcionamento dos demais. 
+O objetivo desse projeto, portanto, é concentrar em uma única plataforma as informações obtidas através de inúmeras ferramentas e serviços, e através disso construir um inventário dos sistemas rodando na USP e suas possíveis vulnerabilidades. Adicionalmente, essa plataforma deve ser escalável para centenas de milhares de entradas, possuir uma arquitetura modular e possibilitar a adição e substituição de módulos sem interromper o funcionamento dos demais, pois é possível que um escaneamento total demore diversas semanas por conta do tamanho da rede. 
