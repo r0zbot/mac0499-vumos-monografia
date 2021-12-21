@@ -18,11 +18,12 @@
         \caption{Diagrama inscrição/publicação no NATS. (Figura retirada de \cite{natsmicro})\label{fig:nats-diagram}}
     \end{figure}
     
+    
 \section{Módulos}
     
     O sistema foi projetado para que cada módulo possa ser implementado em qualquer linguagem de programação, e usando qualquer paradigma, desde que ele seja capaz de se comunicar com o sistema de mensageria NATS e siga o protocolo de mensagens especificado. Este protocolo foi definido no repositório \textit{common} usando \textit{json-schema}\footnote{\url{https://json-schema.org/}}, já que uma mensagem no NATS é enviada no formato JSON. 
     
-    \begin{figure}
+    \begin{figure}[H]
         \includegraphics[scale=0.8]{figuras/vumos-module-communication.drawio.pdf}
         \caption{Diagrama de troca de mensagens entre um módulo e o gerenciador vumos-db-api.\label{fig:module-communication}}
     \end{figure}
@@ -31,23 +32,14 @@
     sistema. Essa mensagem contém o \textit{VUMOS\_ID} (que corresponde a um 
     \textit{uuid} que representa o módulo), nome e descrição do 
     módulo, e também quais são seus parâmetros configuráveis. Nessa mensagem também são enviados os valores padrão de tais configurações.
+    
+    Além disso, módulos podem interagir entre si de maneiras distintas quando necessário, como é o caso do Crawler e do SQLMap Runner, por exemplo.
+    
+    \subsection{Tópicos}
+    
+    Para padronização do sistema, cada módulo sempre se inscreve em um tópico de \textit{broadcast} e em um tópico com seu próprio \textit{VUMOS\_ID}. Isso permite que sempre seja possível enviar uma mensagem que todos os módulos vão receber, e também torna possível enviar uma mensagem diretamente a um módulo específico (como um pedido de mudança de configuração, por exemplo, que não tem valor a outros módulos senão aquele que precisa alterar sua configuração).
+    
 
-    
-    \begin{figure}
-        \includegraphics[scale=0.8]{figuras/vumos-Microservices.pdf}
-        \caption{Diagrama de comunicação dos microsserviços implementados.\label{fig:microservices}}
-    \end{figure}
-    
-    Além disso, módulos podem interagir entre si de maneiras distintas quando necessário, como é o caso do Crawler e do SQLMap Runner.
-    
-    \subsection{Vumos Common}
-    Seguindo a arquitetura de microsserviços, cada módulo é responsável pelo armazenamento das informações relevantes a seu funcionamento, podendo ser elas obtidas através do prório módulo ou através de mensagens recebidas por outros módulos. 
-    
-    Para facilitar o processo de desenvolvimento de um novo módulo, foi implementada uma biblioteca em \textit{Python} que funciona como arcabouço para os outros módulos, e também contém o \textit{schema} das mensagens da aplicação.
-    
-    Ele conta com um banco de dados local implementado em SQLite, usado principalmente para o armazenamento das configurações do módulo. Para facilitar o seu acesso do ponto de vista do desenvolvedor, foi implementado um conjunto de funções que tornam o seu uso transparente.
-    
-    Para que seja possível enviar e receber mensagens do módulo enquanto ele executa outras tarefas, como escrita no banco de dados ou requisições HTTP, foi utilizada uma arquitetura de computação assíncrona, utilizando a biblioteca \textit{asyncio} do Python. Isso nos proporciona métodos interessantes para a execução de subprocessos, o que é necessário para uma grande parte dos módulos a serem implementados, além de proporcionar um maior desempenho no que se diz respeito a esse tipo de operação. 
     
 
 

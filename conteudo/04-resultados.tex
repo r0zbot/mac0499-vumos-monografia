@@ -7,6 +7,20 @@
 
 \section{Módulos Implementados}
 
+    \begin{figure}[H]
+        \includegraphics[scale=0.8]{figuras/vumos-Microservices.pdf}
+        \caption{Diagrama de comunicação dos microsserviços implementados.\label{fig:microservices}}
+    \end{figure}
+
+    \subsection{Vumos Common}
+    Seguindo a arquitetura de microsserviços, cada módulo é responsável pelo armazenamento das informações relevantes a seu funcionamento, podendo ser elas obtidas através do prório módulo ou através de mensagens recebidas por outros módulos. 
+    
+    Para facilitar o processo de desenvolvimento de um novo módulo, foi implementada uma biblioteca em \textit{Python} que funciona como arcabouço para os outros módulos, e também contém o \textit{schema} das mensagens da aplicação.
+    
+    Ele conta com um banco de dados local implementado em SQLite, usado principalmente para o armazenamento das configurações do módulo. Para facilitar o seu acesso do ponto de vista do desenvolvedor, foi implementado um conjunto de funções que tornam o seu uso transparente.
+    
+    Para que seja possível enviar e receber mensagens do módulo enquanto ele executa outras tarefas, como escrita no banco de dados ou requisições HTTP, foi utilizada uma arquitetura de computação assíncrona, utilizando a biblioteca \textit{asyncio} do Python. Isso nos proporciona métodos interessantes para a execução de subprocessos, o que é necessário para uma grande parte dos módulos a serem implementados, além de proporcionar um maior desempenho no que se diz respeito a esse tipo de operação. 
+
     \subsection{Amass Scanner}
     
     Este módulo tem como objetivo encontrar subdomínios existentes no domínio principal \url{usp.br}, usando para isso a ferramenta de código aberto AMASS \footnote{\url{https://github.com/OWASP/Amass}}. Esta ferramenta utiliza diversas técnicas de enumeração de DNS para tentar encontrar subdomínios válidos, como a força bruta, \textit{search engine scraping}, busca em certificados e páginas arquivadas.
@@ -19,7 +33,7 @@
     Uma vez encontrados os subdomínios, é enviada uma mensagem como \textit{broadcast} com os tal informação em seus respectivos hosts/alvos.
     % TODO: link com vumos-db-api falando dos targets?
     \subsection{Nmap Scanner}
-    Este módulo tem como objetivo encontrar máquinas na rede e seus serviços, obtendo também informações sobre eles, como em quais portas estão rodando, quais versões, e possivelmente se possuem alguma vulnerabilidade conhecida. Para isso, é utilizada a ferramenta de código aberto de mapeamento de rede NMAP \footnote{\url{https://github.com/OWASP/Amass}}, que realiza todas essas funções para cada um dos IPs que ela encontra.
+    Este módulo tem como objetivo encontrar máquinas na rede e seus serviços, obtendo também informações sobre eles, como em quais portas estão rodando, quais versões, e possivelmente se possuem alguma vulnerabilidade conhecida. Para isso, é utilizada a ferramenta de código aberto de mapeamento de rede NMAP \footnote{\url{https://github.com/nmap/nmap}}, que realiza todas essas funções para cada um dos IPs que ela encontra.
     
     Como variáveis configuráveis deste módulo, temos:
     \begin{itemize}
@@ -48,6 +62,7 @@
     
     Para buscar tais vulnerabilidades, o SQLMap executa diversas requisições HTTP com alterações em seus parâmetros, e verifica por diferenças nos resultados, de acordo com as seguintes técnicas:
     
+    \label{item:sqlmap}
     \begin{itemize}
         \item \emph{Boolean-based blind}: Em português "ataque cego baseado em booleanos", esta técnica adiciona parâmetros de SQL na requisição HTTP que retornem ou verdadeiro ou falso, e verifica a página de resposta por diferenças entre os dois valores. Dessa forma, esta técnica é capaz de extrair dados caractere a caractere, utilizando o método da bisseção para diminuir a quantidade de requisições necessárias para as comparações.
         
@@ -71,6 +86,9 @@
 
 
     \subsection{vumos-db-api}
+    
+    Este é o módulo central da aplicação, que é responsável por controlar os outros módulos e receber seus dados para armazenamento e exibição ao usuário. Ao contrário dos módulos acima, ele foi feito usando NodeJS, Express e Typescript , e utiliza um banco de dados PostgreSQL, que permite o uso de algumas de suas funcionalidades mais avançadas pela biblioteca de ORM (Object-Relational Mapping, ou Mapeamento Objeto-Relacional) TypeORM. 
+    
         % TODO: falar do DB, postgres e mostrar um diagrama
     \subsection{vumos-interface}
         % TODO: botar uns prints bonitinhos
@@ -79,7 +97,8 @@
 \section{Orquestração}
     
     % TODO: falar das networks 
-    \subsection{Produção}
-    O VuMoS foi colocado em produção em http://vumos.hackersdobem.sti.usp.br/ e já está atualmente escanenado os  
+
+\section{Produção}
+    O VuMoS foi colocado em produção em http://vumos.hackersdobem.sti.usp.br/ e já está atualmente escanenado todos os subdomínios de \url{usp.br} e também todas as subredes da universidade. 
 
 % TODO: falar da organização dos repositórios
