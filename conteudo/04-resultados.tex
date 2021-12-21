@@ -87,7 +87,28 @@
 
     \subsection{vumos-db-api}
     
-    Este é o módulo central da aplicação, que é responsável por controlar os outros módulos e receber seus dados para armazenamento e exibição ao usuário. Ao contrário dos módulos acima, ele foi feito usando NodeJS, Express e Typescript , e utiliza um banco de dados PostgreSQL, que permite o uso de algumas de suas funcionalidades mais avançadas pela biblioteca de ORM (Object-Relational Mapping, ou Mapeamento Objeto-Relacional) TypeORM. 
+    Este é o módulo central da aplicação, que é responsável por controlar os outros módulos e receber seus dados para armazenamento e exibição ao usuário. Ao contrário dos módulos acima, ele foi feito usando NodeJS, Express e Typescript , e utiliza um banco de dados PostgreSQL, que permite o uso de algumas de suas funcionalidades mais avançadas pela biblioteca de ORM (Object-Relational Mapping, ou Mapeamento Objeto-Relacional) TypeORM \footnote{\url{https://typeorm.io/}}. 
+    
+    \subsubsection{Banco de dados}
+    
+    \begin{figure}[H]
+        \includegraphics[scale=0.8]{figuras/vumos-db-api-mer.drawio.pdf}
+        \caption{Diagrama entidade relacional do banco de dados implementado \label{fig:vumos-db-mer}}
+    \end{figure}
+    
+    \begin{figure}[H]
+        \includegraphics[scale=0.7]{figuras/vumos-db-api-uml.drawio.pdf}
+        \caption{Diagrama entidade relacional em formato UML do banco de dados implementado \label{fig:vumos-db-uml}}
+    \end{figure}
+    
+    As seguintes tabelas foram implementadas utilizando o TypeORM:
+    \begin{itemize}
+        \item \emph{Module}: Esta tabela contém as informações sobre os módulos conhecidos pelo vumos-db-api, contendo suas configurações e status atual de seu funcionamento
+        \item \emph{Target}: Esta tabela contem os dados de cada "alvo" da aplicação, que é composto principalmente por um endereço de IP e uma lista de domínios.
+        \item \emph{Service}: Esta tabela contem os dados de cada serviço encontrado pelo sistema, sendo eles identificados principalmente por um nome e uma porta, e relacionados com um Target.
+        \item \emph{Target}: Esta tabela contem os dados de cada "alvo" da aplicação, que é composto principalmente por um endereço de IP e uma lista de domínios.
+    \end{itemize}
+    
     
         % TODO: falar do DB, postgres e mostrar um diagrama
     \subsection{vumos-interface}
