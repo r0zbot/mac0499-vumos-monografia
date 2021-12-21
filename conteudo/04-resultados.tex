@@ -30,8 +30,9 @@
     \item \emph{Initial Domain}: Domínio inicial que será escaneado recursivamente
     \end{itemize}
     
-    Uma vez encontrados os subdomínios, é enviada uma mensagem como \textit{broadcast} com os tal informação em seus respectivos hosts/alvos.
+    Uma vez encontrados os subdomínios, é enviada uma mensagem do tipo \textit{data\_target} como \textit{broadcast}, com os tal informação em seus respectivos hosts/alvos.
     % TODO: link com vumos-db-api falando dos targets?
+    
     \subsection{Nmap Scanner}
     Este módulo tem como objetivo encontrar máquinas na rede e seus serviços, obtendo também informações sobre eles, como em quais portas estão rodando, quais versões, e possivelmente se possuem alguma vulnerabilidade conhecida. Para isso, é utilizada a ferramenta de código aberto de mapeamento de rede NMAP \footnote{\url{https://github.com/nmap/nmap}}, que realiza todas essas funções para cada um dos IPs que ela encontra.
     
@@ -42,7 +43,7 @@
         \item \emph{IP Ranges}: Quais IPs serão escaneados. São aceitos IPs no formato \textit{CIDR Standard} separados por vírgula, ou seja, é possível definí-lo para escanear todas as subredes da USP de uma vez.
     \end{itemize}
     
-    Por fim, para cada serviço encontrado é enviada uma mensagem como \textit{broadcast} e também é enviada uma mensagem com seu alvo.
+    Por fim, para cada serviço encontrado é enviada uma mensagem do tipo \textit{data\_service} como \textit{broadcast} e também é enviada uma mensagem do tipo \textit{data\_target} com o seu respectivo alvo.
     
     \subsection{Crawler}
     Este módulo tem o objetivo de, a partir de uma página HTML inicial, encontrar novas páginas que possuem links dinâmicos. Isso é feito usando um \textit{crawler} customizado que utiliza o módulo de Python Scrapy \footnote{\url{https://scrapy.org/}}. Como não é possível saber se um link é processado dinamicamente ou não pelo servidor sem uma análise extensa em cada um deles, é utilizada uma heurística, que nos permite conseguir uma grande quantidade de links dinâmicos sem processamento extra. Portanto, uma URL é considerada dinâmica se contiver uma interrogação (indicando que contém parâmetros, sendo eles analisados para uso futuro), ou se for o resultado de um envio de formulário, onde os parâmetros são seus campos. 
@@ -53,10 +54,10 @@
         \item \emph{Initial URLs}: Lista separada por vírgulas com as URLs por onde o crawler começará a procurar links. 
     \end{itemize}
     
-    Para cada URL dinâmica encontrada, é enviada uma mensagem como \textit{broadcast} e também é enviada uma mensagem com seu alvo e com seu serviço, sendo tais informações extraidas tanto da URL em si quanto da página que a contém.
+    Para cada URL dinâmica encontrada, é enviada uma mensagem do tipo \textit{data\_path} como \textit{broadcast}, e também é enviada uma mensagem do tipo \textit{data\_target} com seu alvo e uma \textit{data\_service} com seu serviço, sendo tais informações extraidas tanto da URL em si quanto da página que a contém.
     
     \subsection{SQLMap Runner}
-    Este módulo tem como objetivo procurar vulnerabilidades de SQL Injetion em uma determinada URL dinâmica através da ferramenta de código aberto SQLMap \footnote{\url{https://github.com/sqlmapproject/sqlmap}}. Para isso, este módulo escuta pelas mensagens de \textit{broadcast} do tipo \textit{Path}, que são enviadas pelo módulo do Crawler e, para cada uma delas, coloca numa fila persistente em disco. Isso é feito pois o SQLMap, devido à sua complexidade, demora diversas vezes mais para ser executado em relação ao Crawler, portanto as URLs são acumuladas nesta fila e processadas assim que possível.
+    Este módulo tem como objetivo procurar vulnerabilidades de SQL Injetion em uma determinada URL dinâmica através da ferramenta de código aberto SQLMap \footnote{\url{https://github.com/sqlmapproject/sqlmap}}. Para isso, este módulo escuta pelas mensagens de \textit{broadcast} do tipo \textit{data\_path}, que são enviadas pelo módulo do Crawler e, para cada uma delas, coloca numa fila persistente em disco. Isso é feito pois o SQLMap, devido à sua complexidade, demora diversas vezes mais para ser executado em relação ao Crawler, portanto as URLs são acumuladas nesta fila e processadas assim que possível.
     
     Para tornar o processo mais rápido, este módulo implementa também um sistema de \textit{multithreading}, no qual diversas instâncias do SQLMap são executadas ao mesmo tempo em URLs diferentes para paralelizar o processo. Para tal, foi utilizado o gerenciamento de \textit{threads} de execução do \textit{asyncio}, onde cada instância do SQLMap é iniciado em uma co-rotina assíncrona com um executor próprio.
     
@@ -82,7 +83,7 @@
         \item \emph{SQLMap Level}: Número inteiro de 1 a 5 que representa o nível de execução do SQLMap. Tal valor representa o quão minucioso o SQLMap será em sua busca por vulnerabilidades, sendo um nível maior mais exaustivo, mas também mais demorado.
     \end{itemize}
     
-    Uma vez encontrada uma página vulnerável, é enviada uma mensagem como \textit{broadcast} anunciando-a, com todas as informações pertinentes.
+    Uma vez encontrada uma página vulnerável, é enviada uma mensagem do tipo \textit{data\_issue} como \textit{broadcast}, anunciando-a com todas as informações pertinentes. 
 
 
     \subsection{vumos-db-api}
@@ -97,20 +98,37 @@
     \end{figure}
     
     \begin{figure}[H]
-        \includegraphics[scale=0.7]{figuras/vumos-db-api-uml.drawio.pdf}
+        \includegraphics[scale=0.7]{figuras/vumos-db-api-uml.pdf}
         \caption{Diagrama entidade relacional em formato UML do banco de dados implementado \label{fig:vumos-db-uml}}
     \end{figure}
     
     As seguintes tabelas foram implementadas utilizando o TypeORM:
     \begin{itemize}
-        \item \emph{Module}: Esta tabela contém as informações sobre os módulos conhecidos pelo vumos-db-api, contendo suas configurações e status atual de seu funcionamento
+        \item \emph{Module}: Esta tabela contém as informações sobre os módulos conhecidos pelo vumos-db-api, contendo suas configurações e status atual de seu funcionamento.
         \item \emph{Target}: Esta tabela contem os dados de cada "alvo" da aplicação, que é composto principalmente por um endereço de IP e uma lista de domínios.
         \item \emph{Service}: Esta tabela contem os dados de cada serviço encontrado pelo sistema, sendo eles identificados principalmente por um nome e uma porta, e relacionados com um Target.
-        \item \emph{Target}: Esta tabela contem os dados de cada "alvo" da aplicação, que é composto principalmente por um endereço de IP e uma lista de domínios.
+        \item \emph{Issue}: Esta tabela contem os dados de cada problema ou vulnerabilidade encontrado pela aplicação, sendo ele composto principalmente um nome e uma descrição, podendo contar opcionalmente com um código de CVE (Common Vulnerabilities and Exposures) ou com a pontuação CVSS (Common Vulnerability Scoring System).
     \end{itemize}
     
+    Todas as entradas em Target, Service e Issue podem contar também com carimbos de data e hora para os horários de criação, atualização e remoção (sendo os dados não removidos efetivamente do banco, e somente marcados como removidos), e também os seguintes campos: 
+    \begin{itemize}
+        \item \emph{extra}: contém informações adicionais disponibilizadas pelo módulo que a adicionou, como a fonte de tal informação, por exemplo.
+        \item \emph{notes}: campo opcional onde o usuário pode adicionar notas sobre aquela entrada, especificando o institudo a qual um IP pertence, por exemplo.
+    \end{itemize}
     
-        % TODO: falar do DB, postgres e mostrar um diagrama
+    \subsubsection{Rotas}
+    
+    Para cada uma das tabelas do banco de dados, foi implementado um conjunto de rotas na API HTTP do tipo GET, POST, PATCH, DELETE, que buscam, inserem, atualizam ou deletam entradas nelas, respectivamente.
+    
+    \subsubsection{Mensagens}
+    
+    Além de ser possível realizar operações nos dados do banco de dados através de requisições HTTP, este módulo também escuta por mensagens de dos tipos \textit{data\_target}, \textit{data\_service} e \textit{data\_issue}, que armazenam também os dados enviados através do sistema de mensageria, atualizando os quando necessário.
+    
+    Além disso, este módulo escuta por mensagens do tipo \textit{hello}, \textit{configuration\_changed} e \textit{status\_update} as utilizam para atualizar as informações referentes a cada um dos módulos presentes no sistema no banco de dados.
+    
+    Vale ressaltar que as mensagens do tipo \textit{data\_path} são ignoradas por este módulo, já que armazenar cada URL encontrada pelo \textit{crawler} não é muito relevante para o funcionamento da aplicação.
+    
+
     \subsection{vumos-interface}
         % TODO: botar uns prints bonitinhos
     
