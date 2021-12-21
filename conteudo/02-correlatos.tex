@@ -45,4 +45,8 @@ O principal uso conhecido dos \textit{web crawlers} é nos motores de busca (com
 
 \section{SQL Injection}
 
-SQL 
+A linguagem SQL (Structured Query Language ou Linguagem de Consulta Estruturada) é o principal método de interação com sistemas gerenciadores de bancos de dados relacionais (SGBDs), e por conta disso é utilizada em uma grande porcentagem dos serviços em produção. No entanto, quando os dados de entrada dos usuário não são propriamente sanitizados, é possível que eles contenham caracteres que influenciem a comunicação da aplicação com o SGBD. Caso o usuário seja mal intencionado, ele pode ser capaz de executar seus pŕoprios comandos SQL, o que determina se um sistema está vulnerável a \textit{SQL Injection}. 
+
+Logo, \textit{SQL Injection} se trata de uma vulnerabilidade de execução de código remoto (RCE), que pode comprometer todos os dados da aplicação, ou até mesmo todo o sistema que a roda. 
+
+Existem diversas maneiras de se evitar este tipo de vulnerabilidade, e geralmente não são difíceis de ser implementadas. Por exemplo, sanitizar as entradas dos usuários já torna essa vulnerabilidade muito mais difícil de acontecer (embora ainda possível, caso haja algum problema no método de sanitização). Da mesma forma, existem diversas maneiras com que uma vulnerabilidade de \textit{SQL Injection} pode ser explorada, como pode ser visto em mais detalhes na implementação do módulo de SQLMap do VuMoS \ref{item:sqlmap}, uma ferramenta que as detecta e explora.  
