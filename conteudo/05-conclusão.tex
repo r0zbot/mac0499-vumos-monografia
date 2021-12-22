@@ -1,7 +1,36 @@
 \chapter{Conclusão}
 \label{cap:conclusao}
 
+\section{Contribuição para a segurança da universidade}
+
+Pode ser dize que o objetivo inicial do projeto foi atingido, pois agora existe uma plataforma capaz de unificar todos os dados de vulnerabilidades encontradas na universidade.
+
+Além disso, os módulos em execução já encontraram vulnerabilidades que precisam ser corrigidas, e portanto, já beneficiaram a comunidade como um todo.
 
 % 1: Contribuição da ferramenta para a seguranca da universidade
+
+\section{Contribuição para a formação acadêmica}
 % 2: Contribuição para a formação Ajudou na minha especialização na área de segurança
+
+Durante o desenvolvimento deste projeto, aprendi muito sobre a arquitetura de microsserviços e como ela pode tanto facilitar quanto dificultar o desenvolvimento de um projeto. 
+Também pude me especializar na área de segurança da informação, aprendendo a fundo detalhes sobre diversos sistemas, quais podem ser suas possíveis vulnerabilidades, e também como explorá-las. Isso me traz um conhecimento de como desenvolver aplicações mais seguras, evitando erros que são comumente cometidos.
+
+% \subsection{Contribuição do Hackers do Bem}
+
+
+
 % 3: Contribuição da HDB
+
+\section{Próximos passos}
+
+Para os próximos passos do projeto, poderão ser implementados novos módulos, como:
+\begin{itemize}
+    \item \emph{Cameradar}: Um módulo que escaneia por câmeras com pouca ou nenhuma autenticação.
+    \item \emph{Metasploit}: Diversos módulos do metasploit podem ser implementados também, para buscar vulnerabilidades em outros tipos de sistema, como RDP, OpenSSL ou SSH, por exemplo.
+    \item \emph{Nmap NSE}: Diversos módulos que utilizam \textit{scripts} do \textit{Nmap Scripting Engine} também podem ser implementados, para que os serviços encontrados sejam também associados a uma CVE, por exemplo.
+    \item \emph{Shodan.io}: Um módulo que extrai as informações existentes em \url{shodan.io} também pode ser facilmente implementado, e disponibilizaria uma grande quantidade de informações pré escaneadas. Porém, ele necessita de uma licença para fazer uso completo de sua API.
+\end{itemize}
+
+Além disso, podem ser feitas melhorias na interface do usuário, permitindo que \textit{Services}, \textit{Targets} e \textit{Issues} sejam adicionados manualmente para incluir vulnerabilidas encontradas fora da plataforma, por exemplo. 
+
+Isso pode ser feito por novas gerações de integrantes do projeto \textit{Hackers do Bem}, pois grande parte do trabalho que antes era feito manualmente pelo grupo pode ser automatizado de forma relativamente simples usando o VuMoS.

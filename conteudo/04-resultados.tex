@@ -1,6 +1,6 @@
 
 \chapter{Ferramenta desenvolvida}
-\label{cap:metodologia}
+\label{cap:resultados}
 % O resultado obtido é a ferramenta 
 
 % Detalhes da execução (linhas de código, prints, etc...), o que está sendo escaneado em produção
@@ -123,7 +123,10 @@
     
     \subsubsection{Autenticação}
     
-    Para autenticação, um usuário pode fazer \textit{login} através de seu nome de usuário e senha, e receberá como resultado um \textit{Bearer token}, que deverá ser enviado em todas as requisições futuras que requiram autenticação, seguindo o modelo \textit{OAuth2}, como explicado em \cite{jones2012oauth}.
+    Para autenticação, um usuário pode fazer \textit{login} através de seu nome de usuário e senha (que é guardada no banco de dados como um \textit{hash} com 8 dígitos de sal, gerada com o método \textit{bcrypt}), e receberá como resultado um \textit{Bearer token}, que deverá ser enviado em todas as requisições futuras que requiram autenticação, seguindo o modelo \textit{OAuth2}, como explicado em \cite{jones2012oauth}.
+    
+    Para ativar o registro de usuários, uma variável de ambiente pode ser definida, podendo ser desativada num momento futuro.
+    
     
     \subsubsection{Rotas}
     
@@ -146,18 +149,49 @@
     
     \begin{figure}[H]
         \includegraphics[scale=0.32]{figuras/vumos-interface-modules.png}
-        \caption{Captura de telas do \textit{vumos-interface} mostrando a página "Dashboard" \label{fig:vumos-interface-modules}. Mais capturas de telas podem ser vistas em \ref{ap:prints}}
+        \caption{Captura de telas do \textit{vumos-interface} mostrando a página "Dashboard" \label{fig:vumos-interface-modules}. Mais capturas de telas podem ser vistas no apêndice  \ref{ap:prints}}
     \end{figure}
     
-    
-        % TODO: botar uns prints bonitinhos
+    As páginas contém informações atualizadas dinamicamente, que podem ser obtidas através de mensagens em um \textit{websocket}. Caso este falhe ou se desconecte por algum motivo, dentro de 15 segundos é efetuada uma nova requisição HTTP para a o vumos-db-api a fim de atualizar os dados e tentar reconectar o \textit{websocket}.
     
 
-\section{Orquestração}
+\section{Organização do projeto}
     
+    Cada um dos módulos do projeto está contido em seu próprio repositório, hospedados no projeto do \textit{hackersdobem-usp} no Gitlab  \footnote{\url{https://gitlab.com/hackersdobem-usp}}, sendo o \textit{vumos-common} adicionado como submódulo em todos os outros módulos feitos em Python. Além disso, todos os módulos contém um \textit{Dockerfile}, que gera um container independente para cada um. Isso torna mais fácil a orquestração e a implantação de cada um deles em produção, através da ferramenta \textit{docker-compose} \footnote{\url{https://docs.docker.com/compose/}}.
+    
+    \clearpage
+    \begin{table}[H]
+        \begin{verbatim}
+----------------------------------------------------------------------
+Language               files         blank       comment          code
+----------------------------------------------------------------------
+TypeScript               103           583           128          2760
+JSON                      16             0             0          1172
+Vuejs Component           16           152            92          1131
+Python                    18           297           261           982
+Bourne Shell               2            14             4           171
+YAML                       6            16            17           127
+Dockerfile                 6            62            45            95
+JavaScript                 5             6             2            84
+Markdown                   3            22             0            66
+GraphQL                    2             0             0            60
+HTML                       1             0             1            16
+SVG                        1             0             0             3
+----------------------------------------------------------------------
+SUM:                     179          1152           550          6667
+----------------------------------------------------------------------
+        \end{verbatim}
+        \caption{Tabela gerada pela ferramenta cloc\footnotemark, que conta as linhas de código de um projeto.}
+        \label{tab:cloc}
+    \end{table}
+    \footnotetext{\url{https://github.com/AlDanial/cloc}}
     % TODO: falar das networks 
+    
+    
+    Como pode ser visto na tabela \ref{tab:cloc}, o projeto conta com aproximadamente 6000 linhas de código, sendo a maioria delas provenientes do \textit{vumos-db-api}, que é o único módulo feito em TypeScript.
 
-\section{Produção}
-    O VuMoS foi colocado em produção em http://vumos.hackersdobem.sti.usp.br/ e já está atualmente escanenado todos os subdomínios de \url{usp.br} e também todas as subredes da universidade. 
+\section{Sistema em produção}
+    O VuMoS foi colocado em produção em \url{http://vumos.hackersdobem.sti.usp.br/} e já está atualmente escanenado todos os subdomínios de \url{usp.br} e também todas as subredes da universidade. 
+    
+    Até o momento, já foram encontrados na rede pública da usp: 28398 \textit{Targets}, cada um com seu respectivo endereço de IP e 89195 serviços rodando neles. O crawler já encontrou 21677 URLs dinâmicas, das quais 3128 já foram escaneadas pelo SQLMap. E destas 3128, foram encontradas duas vulneráveis a SQL Injection (os responsáveis já foram avisados). 
 
-% TODO: falar da organização dos repositórios

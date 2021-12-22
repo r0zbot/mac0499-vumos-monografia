@@ -35,7 +35,7 @@
     
     Além disso, módulos podem interagir entre si de maneiras distintas quando necessário, como é o caso do Crawler e do SQLMap Runner, por exemplo.
     
-    \subsection{Tópicos}
+    \subsection{Tópicos de mensagens}
     
     Para padronização do sistema, cada módulo sempre se inscreve em um tópico de \textit{broadcast} e em um tópico com seu próprio \textit{VUMOS\_ID}. Isso permite que sempre seja possível enviar uma mensagem que todos os módulos vão receber, e também torna possível enviar uma mensagem diretamente a um módulo específico (como um pedido de mudança de configuração, por exemplo, que não tem valor a outros módulos senão aquele que precisa alterar sua configuração).
     
