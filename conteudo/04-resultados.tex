@@ -104,10 +104,15 @@
     
     As seguintes tabelas foram implementadas utilizando o TypeORM:
     \begin{itemize}
+        \item \emph{User}: Esta tabela contém os dados para identificação e autenticação dos usuários. Ela contém também o campo \textit{role}, que identifica o cargo do usuário para uso futuro, para implementação de um usuário somente que possui acesso a operações de leitura, por exemplo.
+        
         \item \emph{Module}: Esta tabela contém as informações sobre os módulos conhecidos pelo vumos-db-api, contendo suas configurações e status atual de seu funcionamento.
+        
         \item \emph{Target}: Esta tabela contem os dados de cada "alvo" da aplicação, que é composto principalmente por um endereço de IP e uma lista de domínios.
+        
         \item \emph{Service}: Esta tabela contem os dados de cada serviço encontrado pelo sistema, sendo eles identificados principalmente por um nome e uma porta, e relacionados com um Target.
-        \item \emph{Issue}: Esta tabela contem os dados de cada problema ou vulnerabilidade encontrado pela aplicação, sendo ele composto principalmente um nome e uma descrição, podendo contar opcionalmente com um código de CVE (Common Vulnerabilities and Exposures) ou com a pontuação CVSS (Common Vulnerability Scoring System).
+        
+        \item \emph{Issue}: Esta tabela contem os dados de cada problema ou vulnerabilidade encontrado pela aplicação, sendo ele composto principalmente um nome e uma descrição, podendo contar opcionalmente com um código de CVE (Common Vulnerabilities and Exposures, \cite{mell2002use}) ou com a pontuação CVSS (Common Vulnerability Scoring System, \cite{scarfone2009analysis}).
     \end{itemize}
     
     Todas as entradas em Target, Service e Issue podem contar também com carimbos de data e hora para os horários de criação, atualização e remoção (sendo os dados não removidos efetivamente do banco, e somente marcados como removidos), e também os seguintes campos: 
@@ -115,6 +120,10 @@
         \item \emph{extra}: contém informações adicionais disponibilizadas pelo módulo que a adicionou, como a fonte de tal informação, por exemplo.
         \item \emph{notes}: campo opcional onde o usuário pode adicionar notas sobre aquela entrada, especificando o institudo a qual um IP pertence, por exemplo.
     \end{itemize}
+    
+    \subsubsection{Autenticação}
+    
+    Para autenticação, um usuário pode fazer \textit{login} através de seu nome de usuário e senha, e receberá como resultado um \textit{Bearer token}, que deverá ser enviado em todas as requisições futuras que requiram autenticação, seguindo o modelo \textit{OAuth2}, como explicado em \cite{jones2012oauth}.
     
     \subsubsection{Rotas}
     
@@ -134,6 +143,11 @@
     Para gerenciar todas as informações recebidas pelo módulo \textit{vumos-db-api} de forma intuitiva ao usuário, foi implementada também uma interface gráfica, usando para isso a biblioteca de \textit{front-end} Vue.js \footnote{\url{https://br.vuejs.org/}}. 
     
     Este é o único módulo da aplicação que não se comunica através do sistema de mensageria, utilizando apenas as APIs HTTP do \textit{vumos-db-api}. Além disso, o Vue.js gera arquivos HTML, CSS e Javascript estáticos e independentes, que podem ser servidos a partir de qualquer servidor de arquivos, como Apache ou Nginx, por exemplo. 
+    
+    \begin{figure}[H]
+        \includegraphics[scale=0.32]{figuras/vumos-interface-modules.png}
+        \caption{Captura de telas do \textit{vumos-interface} mostrando a página "Dashboard" \label{fig:vumos-interface-modules}. Mais capturas de telas podem ser vistas em \ref{ap:prints}}
+    \end{figure}
     
     
         % TODO: botar uns prints bonitinhos
