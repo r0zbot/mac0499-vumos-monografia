@@ -3,7 +3,7 @@
 
 \section{Microsserviços}
 
-    O VuMoS foi implementado utilizando uma arquitetura modular de microsserviços, para que ele possa ser facilmente estendido e modificado no futuro caso necessário, e também para proporcionar uma maior facilidade de desenvolvimento de cada um dos módulos.
+    O VuMoS foi implementado utilizando uma arquitetura modular de microsserviços, para que ele possa ser facilmente estendido e modificado no futuro, caso necessário, e também para proporcionar uma maior facilidade de desenvolvimento de cada um dos módulos.
     
     Estes microsserviços usam um sistema de troca de mensagems como base para comunicação entre si, facilitando a comunicação assíncrona entre eles. Tal sistema também facilita o envio de mensagens de \textit{broadcast}, para que informações de um dos módulos chegue em diversos outros módulos enviando-as apenas uma vez. 
     
@@ -33,7 +33,7 @@
     \textit{uuid} que representa o módulo), nome e descrição do 
     módulo, e também quais são seus parâmetros configuráveis. Nessa mensagem também são enviados os valores padrão de tais configurações.
     
-    Além disso, módulos podem interagir entre si de maneiras distintas quando necessário, como é o caso do \textit{Crawler} e do SQLMap Runner, por exemplo.
+    Além disso, módulos podem interagir entre si de maneiras distintas, quando necessário, como é o caso do \textit{Crawler} e do SQLMap Runner, por exemplo.
     
     \subsection{Tópicos de mensagens}
     
