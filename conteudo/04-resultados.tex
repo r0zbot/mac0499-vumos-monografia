@@ -50,14 +50,14 @@
     
     Como variáveis configuráveis deste módulo, temos:
     \begin{itemize}
-        \item \emph{Allowed domains}: Domínios onde o crawler é permitido a rodar. Isso impede que domínios fora do escopo sejam escaneados quando um link externo (como do Youtube, por exemplo) for encontrado.
-        \item \emph{Initial URLs}: Lista separada por vírgulas com as URLs por onde o crawler começará a procurar links. 
+        \item \emph{Allowed domains}: Domínios onde o \textit{crawler} é permitido a rodar. Isso impede que domínios fora do escopo sejam escaneados quando um link externo (como do Youtube, por exemplo) for encontrado.
+        \item \emph{Initial URLs}: Lista separada por vírgulas com as URLs por onde o \textit{crawler} começará a procurar links. 
     \end{itemize}
     
     Para cada URL dinâmica encontrada, é enviada uma mensagem do tipo \textit{data\_path} como \textit{broadcast}, e também é enviada uma mensagem do tipo \textit{data\_target} com seu alvo e uma \textit{data\_service} com seu serviço, sendo tais informações extraidas tanto da URL em si quanto da página que a contém.
     
     \subsection{SQLMap Runner}
-    Este módulo tem como objetivo procurar vulnerabilidades de SQL Injetion em uma determinada URL dinâmica através da ferramenta de código aberto SQLMap \footnote{\url{https://github.com/sqlmapproject/sqlmap}}. Para isso, este módulo escuta pelas mensagens de \textit{broadcast} do tipo \textit{data\_path}, que são enviadas pelo módulo do Crawler e, para cada uma delas, coloca numa fila persistente em disco. Isso é feito pois o SQLMap, devido à sua complexidade, demora diversas vezes mais para ser executado em relação ao Crawler, portanto as URLs são acumuladas nesta fila e processadas assim que possível.
+    Este módulo tem como objetivo procurar vulnerabilidades de SQL Injetion em uma determinada URL dinâmica através da ferramenta de código aberto SQLMap \footnote{\url{https://github.com/sqlmapproject/sqlmap}}. Para isso, este módulo escuta pelas mensagens de \textit{broadcast} do tipo \textit{data\_path}, que são enviadas pelo módulo do \textit{Crawler} e, para cada uma delas, coloca numa fila persistente em disco. Isso é feito pois o SQLMap, devido à sua complexidade, demora diversas vezes mais para ser executado em relação ao \textit{Crawler}, portanto as URLs são acumuladas nesta fila e processadas assim que possível.
     
     Para tornar o processo mais rápido, este módulo implementa também um sistema de \textit{multithreading}, no qual diversas instâncias do SQLMap são executadas ao mesmo tempo em URLs diferentes para paralelizar o processo. Para tal, foi utilizado o gerenciamento de \textit{threads} de execução do \textit{asyncio}, onde cada instância do SQLMap é iniciado em uma co-rotina assíncrona com um executor próprio.
     
@@ -191,7 +191,7 @@ SUM:                     179          1152           550          6667
     Como pode ser visto na tabela \ref{tab:cloc}, o projeto conta com aproximadamente 6000 linhas de código, sendo a maioria delas provenientes do \textit{vumos-db-api}, que é o único módulo feito em TypeScript.
 
 \section{Sistema em produção}
-    O VuMoS foi colocado em produção em \url{http://vumos.hackersdobem.sti.usp.br/} e já está atualmente escanenado todos os subdomínios de \url{usp.br} e também todas as subredes da universidade. 
+    O VuMoS foi colocado em produção em \url{http://vumos.hackersdobem.sti.usp.br/} e já está atualmente escaneando todos os subdomínios de \url{usp.br} e também todas as subredes da universidade. 
     
-    Até o momento, já foram encontrados na rede pública da usp: 28398 \textit{Targets}, cada um com seu respectivo endereço de IP e 89195 serviços rodando neles. O crawler já encontrou 21677 URLs dinâmicas, das quais 3128 já foram escaneadas pelo SQLMap. E destas 3128, foram encontradas duas vulneráveis a SQL Injection (os responsáveis já foram avisados). 
+    Até o momento, já foram encontrados na rede pública da usp: 28398 \textit{Targets}, cada um com seu respectivo endereço de IP e 89195 serviços rodando neles. O \textit{crawler} já encontrou 21677 URLs dinâmicas, das quais 3128 já foram escaneadas pelo SQLMap. E destas 3128, foram encontradas duas vulneráveis a SQL Injection (os responsáveis já foram avisados). 
 
